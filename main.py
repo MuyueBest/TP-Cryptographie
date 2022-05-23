@@ -1,6 +1,4 @@
-## salut augustin regarde ce que tu pense de ma fonction chiffre xor merci :D et j'ai mis les test à la fin
 # Montrer sur un exemple (message et clef de chiffrement de votre choix), que si on chiffre le message avec la clef et qu’on chiffre le message chiffré avec la même clef, on retrouve le message de départ en clair
-
 
 def inverser_chaine_carcatere(chaine_caractere:str)->str:
     """inverse une chaine de carcatère"""
@@ -10,8 +8,6 @@ def inverser_chaine_carcatere(chaine_caractere:str)->str:
         texte_inverse += chaine_caractere[i-1]
         i = i - 1
     return texte_inverse
-
-assert inverser_chaine_carcatere("NSI") == "ISN"
 
 def convertit_texte_en_binaire(texte:str)->str:
     """Convertit une chaine de caractère texte en binaire"""
@@ -35,8 +31,6 @@ def convertit_binaire_vers_un_entier_en_base_10(chaine_binaire:str)->int:
             entier += 2**i
     return entier
 
-assert convertit_binaire_vers_un_entier_en_base_10("01001110") == 78
-
 def convertit_binaire_en_texte(binaire:str)->str:
     """Convertit un binaire en texte"""
     dico_lettre_texte = {}
@@ -46,9 +40,6 @@ def convertit_binaire_en_texte(binaire:str)->str:
     for lettre in dico_lettre_texte.values():
         convertion_binaire += lettre
     return convertion_binaire
-
-assert convertit_binaire_en_texte("010011100101001101001001") == 'NSI'
-
 
 def chiffre_xor(chaine_binaire:str,cle_binaire:str):
     """ chiffre la chaine_binaire par un xor grace à la cle_binaire"""
@@ -87,12 +78,20 @@ def modinv(e,n):
 
 ## Test
 
+assert inverser_chaine_carcatere("NSI") == "ISN"
+
+assert convertit_binaire_vers_un_entier_en_base_10("01001110") == 78
+
+assert convertit_binaire_en_texte("010011100101001101001001") == 'NSI'
+
 assert chiffre_xor("0101001101010000010001010100001101001001010000010100110001001001010101000100010100100000010011100101001101001001","01010100010001010101001001001101") == "0000011100010101000101110000111000011101000001000001111000000100000000000000000001110010000000110000011100001100"
 
 assert convertit_texte_en_binaire( "SPECIALITE NSI" ) =="0101001101010000010001010100001101001001010000010100110001001001010101000100010100100000010011100101001101001001"
 
 assert convertit_texte_en_binaire( "TERM" ) ==  "01010100010001010101001001001101"
 
+
+##Exemple
 
 message = "SPECIALITE NSI"
 clef = "TERM"

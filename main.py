@@ -21,7 +21,6 @@ def convertit_texte_en_binaire(texte:str)->str:
         texte_binaire += element
     return texte_binaire
 
-
 def convertit_binaire_vers_un_entier_en_base_10(chaine_binaire:str)->int:
     """Convertit un binaire en entier"""
     entier = 0
@@ -49,8 +48,6 @@ def chiffre_xor(chaine_binaire:str,cle_binaire:str):
         b = int(cle_binaire[i%len(cle_binaire)])
         message_chiffre += str(a^b)
     return message_chiffre
-
-
 
 def convertit_binaire_vers_decimal(octet):
     pass

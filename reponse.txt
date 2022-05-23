@@ -29,8 +29,29 @@ XOR
 =
 0101001101100001011011000111010101110100 message ( youpi !! c'est le même que le début)
 
+a1=5, b1=3, a2=7, b2=5
+
 Calcul : 
-M = 
-e = 
-d =
-n =
+M = a1*b1-1 = 14
+e = a2*M+a1 = 103
+d = b2*M+b1 = 73
+n = (e*d-1)//M = 537
+
+Clef publique = (e, n) = (103,537)
+clef secrète = (d, n) = (73,537)
+
+Chiffrer :
+m < n
+opération = e*m%n
+
+Déchiffrer : 
+m < n
+opération = d*m%n
+
+Chiffre:
+m = 'a'
+ord('a') = 97
+e*m % n = 103 * 97 % 537 = 325
+
+Déchiffre:
+d*m % n = 73 * 325 % 537 = 97

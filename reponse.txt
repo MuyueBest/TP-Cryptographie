@@ -1,0 +1,3 @@
+Démontrer la propriété (1) à l’aide de tables de vérité.
+
+A  B  

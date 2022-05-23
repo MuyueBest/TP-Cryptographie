@@ -1,3 +1,3 @@
 # TP-Cryptographie
 
-C'est un TP sur la criptographie de 2 dieux de NSI.
+C'est un TP sur la cryptographie de 2 dieux de NSI.

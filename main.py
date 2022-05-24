@@ -51,8 +51,9 @@ def chiffre_xor(chaine_binaire:str, cle_binaire:str)->str:
         message_chiffre += str(a^b)
     return message_chiffre
 
-def convertit_binaire_vers_decimal(octet):
-    pass
+def convertit_binaire_vers_decimal(octet:str)->float:
+	"""Convertit base 2 en base 10 en octet"""
+	return convertit_binaire_vers_un_entier_en_base_10(octet)
 
 def genere_clefs_publique_et_privee(a1,b1,a2,b2):
     """ genere et renvoi la cle publique puis la clef privee"""
@@ -95,18 +96,5 @@ assert convertit_binaire_en_texte('001100100010000001000100011010010110010101110
 assert chiffre_xor("0101001101010000010001010100001101001001010000010100110001001001010101000100010100100000010011100101001101001001","01010100010001010101001001001101") == "0000011100010101000101110000111000011101000001000001111000000100000000000000000001110010000000110000011100001100" #Avec valeur = "SPECIALITE NSI", et clé = "TERM"
 assert chiffre_xor('00110010001000000100010001101001011001010111010101111000', '0101101001100101011100100110111100100000010101000111011101101111') == '01101000010001010011011000000110010001010010000100001111' #Avec valeur = "2 Dieux", et clé = "Zero Two"
 
-
-
-##Exemple
-
-message = "SPECIALITE NSI"
-clef = "TERM"
-message_binaire = convertit_texte_en_binaire(message)
-print(message,"en binaire",message_binaire)
-clef_binaire = convertit_texte_en_binaire(clef)
-print(clef,"en binaire",clef_binaire)
-message_binaire_chiffre = chiffre_xor(message_binaire,clef_binaire)
-print("message chiffré" ,message_binaire_chiffre)
-message_binaire_dechiffre = chiffre_xor(message_binaire_chiffre,clef_binaire)
-print("message_binaire_dechiffre",message_binaire_dechiffre)
-print("message dechiffré en ASCII",convertit_binaire_en_texte(message_binaire_dechiffre))
+assert convertit_binaire_vers_decimal("01010101") == 85
+assert convertit_binaire_vers_decimal("10101010") == 170

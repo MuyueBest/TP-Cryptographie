@@ -63,11 +63,17 @@ def genere_clefs_publique_et_privee(a1,b1,a2,b2):
     n = int((e*d-1)/M)
     return (e,n),(d,n)
 
-def chiffre_message(m,clef):
-    pass
+def chiffre_message(m:str,clef:tuple)->list:
+    """Fonction qui chiffre un message m qui est une chaîne de caractères avec la clé clef, en remplaçant chaque caractère par son code ASCII en décimal."""
+    return [convertit_binaire_vers_un_entier_en_base_10(convertit_texte_en_binaire(m)[i:i+8]) for i in range(0, len(convertit_texte_en_binaire(m)), 8)]
+
+def dechiffre_message(m:int,cle_secrete:tuple):
+    message_dechiffre = cle_secrete[0]*m
+    message_dechiffre = message_dechiffre%cle_secrete[1]
+    return str(chr(message_dechiffre))
 
 def bruteForceKIDRSA(e,n):
-    pass
+    """Fonction qui permet de calculer et de retourner le premier entier inférieur qui vérifie la relation 'e*d−1 est divisible par n'"""
 
 def egcd(a,b):
     pass
@@ -98,3 +104,4 @@ assert chiffre_xor('00110010001000000100010001101001011001010111010101111000', '
 
 assert convertit_binaire_vers_decimal("01010101") == 85
 assert convertit_binaire_vers_decimal("10101010") == 170
+

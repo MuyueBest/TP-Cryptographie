@@ -35,7 +35,7 @@ def convertit_binaire_vers_un_entier_en_base_10(chaine_binaire:str)->int:
 def convertit_binaire_en_texte(binaire:str)->str:
     """Convertit base 2 en texte"""
     dico_lettre_texte = {}
-    convertion_binaire = str()
+    convertion_binaire = ""
     for i in range(0, len(binaire), 8):
         dico_lettre_texte[str(i//8)] = chr(convertit_binaire_vers_un_entier_en_base_10(binaire[i:i+8]))
     for lettre in dico_lettre_texte.values():
@@ -65,15 +65,20 @@ def genere_clefs_publique_et_privee(a1,b1,a2,b2):
 
 def chiffre_message(m:str,clef:tuple)->list:
     """Fonction qui chiffre un message m qui est une chaîne de caractères avec la clé clef, en remplaçant chaque caractère par son code ASCII en décimal."""
-    return [convertit_binaire_vers_un_entier_en_base_10(convertit_texte_en_binaire(m)[i:i+8]) for i in range(0, len(convertit_texte_en_binaire(m)), 8)]
+    message_convertit = convertit_texte_en_binaire(m)
+    liste_lettre_message_convertit = [convertit_binaire_vers_un_entier_en_base_10(message_convertit[i:i+8]) for i in range(0, len(message_convertit), 8)]
+    liste_lettre_message_chiffre = list()
+    for lettre in liste_lettre_message_convertit:
+        liste_lettre_message_chiffre.append(clef[0]*lettre%clef[1])
+    return liste_lettre_message_chiffre
 
-def dechiffre_message(m:int,cle_secrete:tuple):
-    message_dechiffre = cle_secrete[0]*m
-    message_dechiffre = message_dechiffre%cle_secrete[1]
-    return str(chr(message_dechiffre))
+def dechiffre_message(m:list[int],clef:tuple):
+    """Fonction qui déchiffre un message m qui est une liste de nombres et renvoie le message déchiffré sous la forme d’une chaîne de caractères."""
+    return chr(clef[0]*m%clef[1])
 
 def bruteForceKIDRSA(e,n):
     """Fonction qui permet de calculer et de retourner le premier entier inférieur qui vérifie la relation 'e*d−1 est divisible par n'"""
+    pass
 
 def egcd(a,b):
     pass

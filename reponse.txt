@@ -1,57 +1,99 @@
-Démontrer la propriété (1) à l’aide de tables de vérité.
+ - Démontrer la propriété (1) à l’aide de tables de vérité.
 
-A = 1 B = 1  
-XOR(XOR(1,1),1) = 1
+    A = 1 B = 1  
+    XOR(XOR(1,1),1) = 1
+    
+    A = 0 B = 1
+    XOR(XOR(0,1),1) = 0
+    
+    A = 1 B = 0
+    XOR(XOR(1,0),0) = 1
+    
+    A = 0 B = 0
+    XOR(XOR(0,0),0) = 0
 
-A = 0 B = 1
-XOR(XOR(0,1),1) = 0
 
-A = 1 B = 0
-XOR(XOR(1,0),0) = 1
+ - Montrer sur un exemple (message et clef de chiffrement de votre choix), que si on chiffre le message avec la clef et qu’on chiffre le message chiffré avec la même clef, on retrouve le message de départ en clair.
 
-A = 0 B = 0
-XOR(XOR(0,0),0) = 0
+    "Salut" en binaire donne :
+    '0101001101100001011011000111010101110100'
+    La clé "02" en binaire donne :
+    '0011000000110010'
+    
+    '0101001101100001011011000111010101110100' XOR '0011000000110010' = '0110001101010011010111000100011101000100'
+    
+    0101001101100001011011000111010101110100 message
+    XOR 
+    0011000000110010001100000011001000110000 clé de chiffrement
+    =
+    0110001101010011010111000100011101000100 résultat
+    XOR
+    0011000000110010001100000011001000110000 clé de chiffrement maintenant de déchiffrement
+    =
+    0101001101100001011011000111010101110100 message 
 
-"Salut" en binaire donne :
-'0101001101100001011011000111010101110100'
-La clé "02" en binaire donne :
-'0011000000110010'
 
-'0101001101100001011011000111010101110100' XOR '0011000000110010' = '0110001101010011010111000100011101000100'
+a1 = 5, b1 = 3, a2 = 7, b2 = 5
 
-0101001101100001011011000111010101110100 message
-XOR 
-0011000000110010001100000011001000110000 clé de chiffrement
-=
-0110001101010011010111000100011101000100 résultat
-XOR
-0011000000110010001100000011001000110000 clé de chiffrement maintenant de déchiffrement
-=
-0101001101100001011011000111010101110100 message ( youpi !! c'est le même que le début)
+ - Calculer M , e, d et n.
+ - En déduire la clef publique et la clef secrète.
+ - Donner le message chiffré par la clef publique représenté par le code ASCII de la lettre ’a’ (en minuscule).
+ - Montrer que si on chiffre le message avec la clef secrète on retrouve bien le code ASCII de la lettre ’a’.
 
-a1=5, b1=3, a2=7, b2=5
+    Calcul : 
+    M = a1*b1-1 = 14
+    e = a2*M+a1 = 103
+    d = b2*M+b1 = 73
+    n = (e*d-1)//M = 537
+    
+    Clef publique = (e, n) = (103,537)
+    clef secrète = (d, n) = (73,537)
+    
+    Chiffrer :
+    m < n
+    opération = e*m%n
+    
+    Déchiffrer : 
+    m < n
+    opération = d*m%n
+    
+    Chiffrer :
+    m = 'a'
+    ord('a') = 97
+    e * m % n = 103 * 97 % 537 = 325
+    
+    Déchiffrer :
+    d * m % n = 73 * 325 % 537 = 97
 
-Calcul : 
-M = a1*b1-1 = 14
-e = a2*M+a1 = 103
-d = b2*M+b1 = 73
-n = (e*d-1)//M = 537
 
-Clef publique = (e, n) = (103,537)
-clef secrète = (d, n) = (73,537)
+a1 = 13, b1 = 32, a2 = 69, b2 = 35
 
-Chiffrer :
-m < n
-opération = e*m%n
+ - Donner les informations suivantes à partir des fonctions Python codées pour l’algorithme KidRSA :
+    Donner les valeurs des clefs publique et secrète.
+    Donner la liste des 3 nombres pour le chiffrement de la chaîne de caractères "NSI" avec la clef publique.
+    Montrer que si on déchiffre avec la clef secrète le message NSI préalablement chiffré avec la clef publique, on retrouve bien la chaine "NSI".
 
-Déchiffrer : 
-m < n
-opération = d*m%n
+Cléf publique : (28648, 1004889)
+Cléf privée : (14557, 1004889)
 
-Chiffre:
-m = 'a'
-ord('a') = 97
-e*m % n = 103 * 97 % 537 = 325
+Chiffrement : 
+m = 'NSI'
+m0 = 'N'
+m1 = 'S'
+m2 = 'I'
+m0 = ord('N') = 78
+m1 = ord('S') = 83
+m2 = ord('I') = 73
+m0 = 28648*78%1004889 = 224766
+m1 = 28648*83%1004889 = 368006
+m2 = 28648*73%1004889 = 81526
 
-Déchiffre:
-d*m % n = 73 * 325 % 537 = 97
+Déchiffrement : 
+m0 = 224766
+m0' = 14557*224766%1004889 = 78
+m1 = 368006
+m1' = 14557*368006%1004889 = 83
+m2 = 81526
+m2' = 14557*81526%1004889 = 73
+m = chr(78)+chr(83)+chr(73) = 'NSI'
+

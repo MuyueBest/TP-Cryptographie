@@ -72,9 +72,10 @@ def chiffre_message(m:str,clef:tuple)->list:
         liste_lettre_message_chiffre.append(clef[0]*lettre%clef[1])
     return liste_lettre_message_chiffre
 
-def dechiffre_message(m:list[int],clef:tuple):
+def dechiffre_message(m:list,clef:tuple):
     """Fonction qui déchiffre un message m qui est une liste de nombres et renvoie le message déchiffré sous la forme d’une chaîne de caractères."""
-    return chr(clef[0]*m%clef[1])
+    pass
+    #return chr(clef[0]*m%clef[1])
 
 def bruteForceKIDRSA(e,n):
     """Fonction qui permet de calculer et de retourner le premier entier inférieur qui vérifie la relation 'e*d−1 est divisible par n'"""
@@ -87,7 +88,7 @@ def modinv(e,n):
     pass
 
 
-##Vérifications des fopnctions (ne suffit pas pour vérifier entierement une fonction)
+##Vérifications des fonctions (ne suffit pas pour vérifier entierement une fonction)
 
 ##Fonction non demandé
     
@@ -110,3 +111,8 @@ assert chiffre_xor('00110010001000000100010001101001011001010111010101111000', '
 assert convertit_binaire_vers_decimal("01010101") == 85
 assert convertit_binaire_vers_decimal("10101010") == 170
 
+assert chiffre_message('a', (103,537)) == [325]
+assert chiffre_message('Zero Two', (59, 836)) == [294, 107, 38, 697, 216, 776, 333, 697]
+
+#assert dechiffre_message([325],(73,537)) == "a"
+#assert dechiffre_message([294, 107, 38, 697, 216, 776, 333, 697],(59, 836)) == 'Zero Two'

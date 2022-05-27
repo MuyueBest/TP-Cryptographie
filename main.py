@@ -55,7 +55,7 @@ def convertit_binaire_vers_decimal(octet:str)->float:
 	"""Convertit base 2 en base 10 en octet"""
 	return convertit_binaire_vers_un_entier_en_base_10(octet)
 
-def genere_clefs_publique_et_privee(a1,b1,a2,b2):
+def genere_clefs_publique_et_privee(a1, b1, a2, b2):
     """ genere et renvoi la cle publique puis la clef privee"""
     M = a1*b1-1
     e = a2*M+a1
@@ -63,7 +63,7 @@ def genere_clefs_publique_et_privee(a1,b1,a2,b2):
     n = int((e*d-1)/M)
     return (e,n),(d,n)
 
-def chiffre_message(m:str,clef:tuple)->list:
+def chiffre_message(m:str, clef:tuple)->list:
     """Fonction qui chiffre un message m qui est une chaîne de caractères avec la clé clef, en remplaçant chaque caractère par son code ASCII en décimal."""
     message_convertit = convertit_texte_en_binaire(m)
     liste_lettre_message_convertit = [convertit_binaire_vers_un_entier_en_base_10(message_convertit[i:i+8]) for i in range(0, len(message_convertit), 8)]
@@ -72,21 +72,26 @@ def chiffre_message(m:str,clef:tuple)->list:
         liste_lettre_message_chiffre.append(clef[0]*lettre%clef[1])
     return liste_lettre_message_chiffre
 
-def dechiffre_message(m:list,clef:tuple):
+def dechiffre_message(m:list, clef:tuple):
     """Fonction qui déchiffre un message m qui est une liste de nombres et renvoie le message déchiffré sous la forme d’une chaîne de caractères."""
-    message_dechiffrer = str()
+    message_dechiffrer = ''
     for nombre in m:
         message_dechiffrer += chr(clef[0]*nombre%clef[1])
     return message_dechiffrer
 
-def bruteForceKIDRSA(e,n):
+def bruteForceKIDRSA(e, n):
     """Fonction qui permet de calculer et de retourner le premier entier inférieur qui vérifie la relation 'e*d−1 est divisible par n'"""
+    plus_petit_d = n#ne pouvant pas être supérieur à n
+    for d in range(1, n):
+        pseudo_d = (e*d-1)%n
+        if pseudo_d == 0 and d < plus_petit_d:
+            plus_petit_d = d
+    return plus_petit_d
+
+def egcd(a, b):
     pass
 
-def egcd(a,b):
-    pass
-
-def modinv(e,n):
+def modinv(e, n):
     pass
 
 
@@ -121,3 +126,6 @@ assert chiffre_message('Zero Two', (1506, 25729)) == [6895, 23461, 17310, 12792,
 
 assert dechiffre_message([325], (73,537)) == "a"
 assert dechiffre_message([6895, 23461, 17310, 12792, 22463, 23588, 24840, 12792], (1418, 25729)) == 'Zero Two'
+
+assert bruteForceKIDRSA(53447, 5185112) == 323639
+assert bruteForceKIDRSA(103,537) == 73

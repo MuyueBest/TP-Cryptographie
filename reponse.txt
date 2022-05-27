@@ -73,27 +73,40 @@ a1 = 13, b1 = 32, a2 = 69, b2 = 35
     Donner la liste des 3 nombres pour le chiffrement de la chaîne de caractères "NSI" avec la clef publique.
     Montrer que si on déchiffre avec la clef secrète le message NSI préalablement chiffré avec la clef publique, on retrouve bien la chaine "NSI".
 
-Cléf publique : (28648, 1004889)
-Cléf privée : (14557, 1004889)
+    Cléf publique : (28648, 1004889)
+    Cléf privée : (14557, 1004889)
+    
+    Chiffrement : 
+    m = 'NSI'
+    m0 = 'N'
+    m1 = 'S'
+    m2 = 'I'
+    m0 = ord('N') = 78
+    m1 = ord('S') = 83
+    m2 = ord('I') = 73
+    m0 = 28648*78%1004889 = 224766
+    m1 = 28648*83%1004889 = 368006
+    m2 = 28648*73%1004889 = 81526
+    
+    Déchiffrement : 
+    m0 = 224766
+    m0' = 14557*224766%1004889 = 78
+    m1 = 368006
+    m1' = 14557*368006%1004889 = 83
+    m2 = 81526
+    m2' = 14557*81526%1004889 = 73
+    m = chr(78)+chr(83)+chr(73) = 'NSI'
 
-Chiffrement : 
-m = 'NSI'
-m0 = 'N'
-m1 = 'S'
-m2 = 'I'
-m0 = ord('N') = 78
-m1 = ord('S') = 83
-m2 = ord('I') = 73
-m0 = 28648*78%1004889 = 224766
-m1 = 28648*83%1004889 = 368006
-m2 = 28648*73%1004889 = 81526
 
-Déchiffrement : 
-m0 = 224766
-m0' = 14557*224766%1004889 = 78
-m1 = 368006
-m1' = 14557*368006%1004889 = 83
-m2 = 81526
-m2' = 14557*81526%1004889 = 73
-m = chr(78)+chr(83)+chr(73) = 'NSI'
+ - Écrire le corps de la fonction bruteForceKidRSA(e,n) qui permet de calculer et de retourner le premier entier d inférieur à n qui vérifie la relation « e × d − 1 est divisible par n ».
+ - En déduire la valeur de d et obtenir ainsi le déchiffrement du message chiffré donné plus haut.
 
+    Le message chiffré avec la clef publique : (e, n) = (53447, 5185112)
+    A l'aide de la fonction :
+        bruteForceKIDRSA(53447, 5185112) >>> 323639
+    Donc la clef privée est : (d, n) = (323639, 5185112)
+
+    Puis ainsi déchiffrer le message :
+    dechiffre_message([3580949, 2084433, 3687843, 4436101, 4489548, 1710304, 4329207, 4542995, 3901631, 1710304, 4061972, 3687843, 1710304, 3527502, 4222313, 4436101, 4436101, 1710304, 3687843,
+4168866, 1710304, 4168866, 4436101, 3901631, 1710304, 3367161], (323639, 5185112)) >>> "C'EST QUI LE BOSS EN NSI ?"
+    Maintenant nous savons le contenu du message : "C'EST QUI LE BOSS EN NSI ?"

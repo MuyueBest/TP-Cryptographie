@@ -74,8 +74,10 @@ def chiffre_message(m:str,clef:tuple)->list:
 
 def dechiffre_message(m:list,clef:tuple):
     """Fonction qui déchiffre un message m qui est une liste de nombres et renvoie le message déchiffré sous la forme d’une chaîne de caractères."""
-    pass
-    #return chr(clef[0]*m%clef[1])
+    message_dechiffrer = str()
+    for nombre in m:
+        message_dechiffrer += chr(clef[0]*nombre%clef[1])
+    return message_dechiffrer
 
 def bruteForceKIDRSA(e,n):
     """Fonction qui permet de calculer et de retourner le premier entier inférieur qui vérifie la relation 'e*d−1 est divisible par n'"""
@@ -111,8 +113,11 @@ assert chiffre_xor('00110010001000000100010001101001011001010111010101111000', '
 assert convertit_binaire_vers_decimal("01010101") == 85
 assert convertit_binaire_vers_decimal("10101010") == 170
 
-assert chiffre_message('a', (103,537)) == [325]
-assert chiffre_message('Zero Two', (59, 836)) == [294, 107, 38, 697, 216, 776, 333, 697]
+assert genere_clefs_publique_et_privee(5, 3, 7, 5) == ((103, 537), (73, 537))
+assert genere_clefs_publique_et_privee(12, 7, 18, 17) == ((1506, 25729), (1418, 25729))
 
-#assert dechiffre_message([325],(73,537)) == "a"
-#assert dechiffre_message([294, 107, 38, 697, 216, 776, 333, 697],(59, 836)) == 'Zero Two'
+assert chiffre_message('a', (103,537)) == [325]
+assert chiffre_message('Zero Two', (1506, 25729)) == [6895, 23461, 17310, 12792, 22463, 23588, 24840, 12792]
+
+assert dechiffre_message([325], (73,537)) == "a"
+assert dechiffre_message([6895, 23461, 17310, 12792, 22463, 23588, 24840, 12792], (1418, 25729)) == 'Zero Two'

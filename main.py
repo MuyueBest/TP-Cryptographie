@@ -1,4 +1,4 @@
-##Focntion non demandé
+##Focntion non demandé ( évite les répétitions de code, fait gagner de la place )
 
 def inverser_chaine_carcatere(chaine_caractere:str)->str:
     """inverse une chaine de carcatère"""
@@ -79,7 +79,7 @@ def dechiffre_message(m:list, clef:tuple):
         message_dechiffrer += chr(clef[0]*nombre%clef[1])
     return message_dechiffrer
 
-def bruteForceKIDRSA(e, n):
+def bruteForceKidRSA(e, n):
     """Fonction qui permet de calculer et de retourner le premier entier inférieur qui vérifie la relation 'e*d−1 est divisible par n'"""
     plus_petit_d = n#ne pouvant pas être supérieur à n
     for d in range(1, n):
@@ -127,5 +127,5 @@ assert chiffre_message('Zero Two', (1506, 25729)) == [6895, 23461, 17310, 12792,
 assert dechiffre_message([325], (73,537)) == "a"
 assert dechiffre_message([6895, 23461, 17310, 12792, 22463, 23588, 24840, 12792], (1418, 25729)) == 'Zero Two'
 
-assert bruteForceKIDRSA(53447, 5185112) == 323639
-assert bruteForceKIDRSA(103,537) == 73
+assert bruteForceKidRSA(53447, 5185112) == 323639
+assert bruteForceKidRSA(103,537) == 73

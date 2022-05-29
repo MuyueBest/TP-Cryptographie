@@ -89,10 +89,18 @@ def bruteForceKidRSA(e, n):
     return plus_petit_d
 
 def egcd(a, b):
-    pass
-
+    if a == 0:
+        return (b, 0, 1)
+    else :
+        g,y,x = egcd(b%a, a)
+        return (g, x-(b//a)*y, y)
+        
 def modinv(e, n):
-    pass
+    g, x, y = egcd(e, n)
+    if g != 1:
+        return False
+    else :
+        return x%n
 
 
 ##Vérifications des fonctions (ne suffit pas pour vérifier entierement une fonction)
@@ -129,3 +137,6 @@ assert dechiffre_message([6895, 23461, 17310, 12792, 22463, 23588, 24840, 12792]
 
 assert bruteForceKidRSA(53447, 5185112) == 323639
 assert bruteForceKidRSA(103,537) == 73
+
+assert modinv(53447, 5185112) == 323639
+assert modinv(103,537) == 73

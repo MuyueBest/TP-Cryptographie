@@ -117,3 +117,8 @@ a1 = 13, b1 = 32, a2 = 69, b2 = 35
     Avec la clef publique : (e, n) = (230884490440319, 194326240259798261076)
     Avec notre fonction bruteForceKidRSA(e,n) : 
         bruteForceKidRSA(230884490440319, 194326240259798261076) >>>
+    Ici la fonction ne renvoie rien, enfin elle prend trop de temps à trouver le résultat.
+
+Donner la taille des clefs couramment utilisées par RSA pour sécuriser des données sur Internet. Donner aussi quelle nouvelle technologie pourrait permettre de casser RSA en quelques secondes.
+
+La taille des clés RSA est de 2048 bits. Certains ordinateurs quantique arriveraient à casser une clé RSA de 2048 en 8 heures.
